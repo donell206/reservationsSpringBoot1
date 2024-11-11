@@ -1,14 +1,14 @@
 package be.iccbxl.pid.reservationsSpringBoot.model;
-import com.github.slugify.Slugify;
 
-import jakarta.persistence.*;
+
 import com.github.slugify.Slugify;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="locations")
 public class Location {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     @Column(unique=true)
@@ -102,3 +102,4 @@ public class Location {
                 + website + ", phone=" + phone + "]";
     }
 }
+

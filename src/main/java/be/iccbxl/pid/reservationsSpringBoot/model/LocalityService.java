@@ -42,4 +42,3 @@ public class LocalityService {
         repository.deleteById(indice);
     }
 }
-

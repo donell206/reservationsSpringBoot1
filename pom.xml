@@ -12,6 +12,8 @@
         <java.version>17</java.version>
         <spring-boot.version>3.3.5</spring-boot.version>
         <thymeleaf-layout-dialect.version>3.2.0</thymeleaf-layout-dialect.version> <!-- Updated version for layout dialect -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <parent>
@@ -42,6 +44,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.5.3.Final</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
@@ -52,8 +60,11 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
+            <version>8.0.33</version>
         </dependency>
+
+
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -81,6 +92,20 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>10.10.0</version>
+                <configuration>
+                    <url>jdbc:mysql://localhost:3306/reservations</url>
+                    <user>root</user>
+                    <password></password>
+                    <driver>com.mysql.cj.jdbc.Driver</driver>
+                    <ignoreMigrationPatterns>*:ignored</ignoreMigrationPatterns>
+                </configuration>
+
+            </plugin>
+
         </plugins>
     </build>
 </project>

@@ -2,7 +2,8 @@ package be.iccbxl.pid.reservationsSpringBoot.model;
 
 
 import jakarta.persistence.*;
-
+import jakarta.persistence.GeneratedValue;
+import be.iccbxl.pid.reservationsSpringBoot.model.Location;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +11,12 @@ import java.util.List;
 @Table(name="localities")
 public class Locality {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String postalCode;
     private String locality;
 
-    @OneToMany( targetEntity=Location.class, mappedBy="locality" )
+    @OneToMany( targetEntity= Location.class, mappedBy="locality" )
     private List<Location> locations = new ArrayList<>();
 
     protected Locality() { }
@@ -48,6 +49,7 @@ public class Locality {
     public List<Location> getLocations() {
         return locations;
     }
+
     public Locality addLocation(Location location) {
         if(!this.locations.contains(location)) {
             this.locations.add(location);
@@ -74,4 +76,3 @@ public class Locality {
     }
 
 }
-
