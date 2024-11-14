@@ -1,5 +1,8 @@
 package be.iccbxl.pid.reservationsSpringBoot.model;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.github.slugify.Slugify;
 import jakarta.persistence.*;

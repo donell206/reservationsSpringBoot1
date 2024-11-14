@@ -1,17 +1,16 @@
 package be.iccbxl.pid.reservationsSpringBoot.model;
 
-import com.github.slugify.Slugify;
-import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import com.github.slugify.Slugify;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="shows")
 public class Show {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     @Column(unique=true)
@@ -23,12 +22,6 @@ public class Show {
     @Column(name="poster_url")
     private String posterUrl;
 
-    @Column(name="updated_at")
-    private LocalDateTime updatedAt;
-
-    @OneToMany(targetEntity=Representation.class, mappedBy="show")
-    private List<Representation> representations = new ArrayList<>();
-
     @ManyToOne
     @JoinColumn(name="location_id", nullable=true)
     private Location location;
@@ -36,15 +29,14 @@ public class Show {
     private boolean bookable;
     private double price;
 
-    /**
-     * Date de création du spectacle
-     */
     @Column(name="created_at")
     private LocalDateTime createdAt;
 
-    /**
-     * Date de modification du spectacle
-     */
+    @Column(name="updated_at")
+    private LocalDateTime updatedAt;
+
+    @OneToMany(targetEntity=Representation.class, mappedBy="show")
+    private List<Representation> representations = new ArrayList<>();
 
     public Show() { }
 
@@ -63,6 +55,16 @@ public class Show {
         this.updatedAt = null;
     }
 
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = this.createdAt;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -84,7 +86,6 @@ public class Show {
         this.title = title;
 
         Slugify slg = new Slugify();
-
         this.setSlug(slg.slugify(title));
     }
 
@@ -109,9 +110,9 @@ public class Show {
     }
 
     public void setLocation(Location location) {
-        this.location.removeShow(this);	//déménager de l’ancien lieu
+        this.location.removeShow(this);  // Move out of the old location
         this.location = location;
-        this.location.addShow(this);		//emménager dans le nouveau lieu
+        this.location.addShow(this);      // Move into the new location
     }
 
     public boolean isBookable() {
@@ -147,7 +148,7 @@ public class Show {
     }
 
     public Show addRepresentation(Representation representation) {
-        if(!this.representations.contains(representation)) {
+        if (!this.representations.contains(representation)) {
             this.representations.add(representation);
             representation.setShow(this);
         }
@@ -156,10 +157,10 @@ public class Show {
     }
 
     public Show removeRepresentation(Representation representation) {
-        if(this.representations.contains(representation)) {
+        if (this.representations.contains(representation)) {
             this.representations.remove(representation);
-            if(representation.getLocation().equals(this)) {
-                representation.setLocation(null);
+            if (representation.getShow().equals(this)) {
+                representation.setShow(null);
             }
         }
 
@@ -174,7 +175,4 @@ public class Show {
                 + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
                 + ", representations=" + representations.size() + "]";
     }
-
-
-
 }
