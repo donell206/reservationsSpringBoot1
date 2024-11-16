@@ -155,6 +155,15 @@ public class Show {
 
         return this;
     }
+    @ManyToMany(mappedBy = "shows")
+    private List<ArtistType> artistTypes = new ArrayList<>();
+
+    /**
+     * Get the performances (artists in a type of collaboration) for the show
+     */
+    public List<ArtistType> getArtistTypes() {
+        return artistTypes;
+    }
 
     public Show removeRepresentation(Representation representation) {
         if (this.representations.contains(representation)) {
@@ -162,6 +171,23 @@ public class Show {
             if (representation.getShow().equals(this)) {
                 representation.setShow(null);
             }
+        }
+
+        return this;
+    }
+    public Show addArtistType(ArtistType artistType) {
+        if(!this.artistTypes.contains(artistType)) {
+            this.artistTypes.add(artistType);
+            artistType.addShow(this);
+        }
+
+        return this;
+    }
+
+    public Show removeArtistType(ArtistType artistType) {
+        if(this.artistTypes.contains(artistType)) {
+            this.artistTypes.remove(artistType);
+            artistType.getShows().remove(this);
         }
 
         return this;
