@@ -14,6 +14,8 @@
         <thymeleaf-layout-dialect.version>3.2.0</thymeleaf-layout-dialect.version> <!-- Updated version for layout dialect -->
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <parent>
