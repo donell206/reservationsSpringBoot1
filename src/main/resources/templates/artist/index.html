@@ -9,6 +9,10 @@
     <div layout:fragment="content">
         <h1 th:text="${title}">Liste des artistes</h1>
 
+        <div class="actions">
+            <a th:href="@{/artists/create}">Add new artist</a>
+        </div>
+
         <table th:unless="${#lists.isEmpty(artists)}">
             <thead>
             <tr>
@@ -19,8 +23,7 @@
             <tbody>
             <tr th:each="artist : ${artists}">
                 <td th:text="${artist.firstname}">Bob</td>
-                <td><a th:text="${artist.lastname}"
-                       th:href="@{/artists/{id}(id=${artist.id})}">Sull</a></td>
+                <td th:text="${artist.lastname}">Sull</td>
             </tr>
             </tbody>
         </table>
