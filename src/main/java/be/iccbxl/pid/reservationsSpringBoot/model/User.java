@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name="users")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String login;
     private String password;
@@ -22,6 +22,9 @@ public class User {
 
     @ManyToMany(mappedBy = "users")
     private List<Role> roles = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "users")
+    private List<Representation> representations = new ArrayList<>();
 
     protected User() {}
 
@@ -88,6 +91,10 @@ public class User {
         return roles;
     }
 
+    public List<Representation> getRepresentations() {
+        return representations;
+    }
+
     public LocalDateTime getCreated_at() {
         return created_at;
     }
@@ -110,10 +117,6 @@ public class User {
         return this;
     }
 
-    public List<Representation> getRepresentations() {
-        return representations;
-    }
-
     public User addRepresentation(Representation representation) {
         if(!this.representations.contains(representation)) {
             this.representations.add(representation);
@@ -131,8 +134,6 @@ public class User {
 
         return this;
     }
-
-
 
     @Override
     public String toString() {

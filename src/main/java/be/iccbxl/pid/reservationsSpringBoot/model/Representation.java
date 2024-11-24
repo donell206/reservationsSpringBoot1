@@ -28,6 +28,47 @@ public class Representation {
     /**
      * Lieu de prestation de la représentation
      */
+
+
+    public Representation(Show show, LocalDateTime when, Location location) {
+        this.show = show;
+        this.when = when;
+        this.location = location;
+    }
+
+    public Show getShow() {
+        return show;
+    }
+
+    public void setShow(Show show) {
+        this.show = show;
+    }
+
+    public LocalDateTime getWhen() {
+        return when;
+    }
+
+    public void setWhen(LocalDateTime when) {
+        this.when = when;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+
+
+    /**
+     * Lieu de prestation de la représentation
+     */
     @ManyToOne
     @JoinColumn(name="location_id", nullable=true)
     private Location location;
