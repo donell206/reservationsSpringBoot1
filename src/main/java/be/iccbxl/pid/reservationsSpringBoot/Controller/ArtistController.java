@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import be.iccbxl.pid.reservationsSpringBoot.model.Artist;
-import be.iccbxl.pid.reservationsSpringBoot.model.ArtistService;
+import be.iccbxl.pid.reservationsSpringBoot.service.ArtistService;
 
 @Controller
 public class ArtistController {
@@ -105,6 +105,8 @@ public class ArtistController {
 
         return "redirect:/artists";
     }
+
+
 
 
 }

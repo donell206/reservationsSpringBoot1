@@ -3,7 +3,7 @@ package be.iccbxl.pid.reservationsSpringBoot.Controller;
 import be.iccbxl.pid.reservationsSpringBoot.model.Artist;
 import be.iccbxl.pid.reservationsSpringBoot.model.ArtistType;
 import be.iccbxl.pid.reservationsSpringBoot.model.Show;
-import be.iccbxl.pid.reservationsSpringBoot.model.ShowService;
+import be.iccbxl.pid.reservationsSpringBoot.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

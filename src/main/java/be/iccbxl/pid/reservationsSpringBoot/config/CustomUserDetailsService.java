@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 
 import be.iccbxl.pid.reservationsSpringBoot.model.User;
 
-import be.iccbxl.pid.reservationsSpringBoot.model.User;
-import be.iccbxl.pid.reservationsSpringBoot.model.UserRepository;
+import be.iccbxl.pid.reservationsSpringBoot.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

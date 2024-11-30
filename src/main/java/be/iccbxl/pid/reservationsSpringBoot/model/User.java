@@ -18,6 +18,7 @@ public class User {
     private String lastname;
     private String email;
     private String langue;
+    private String role;
     private LocalDateTime created_at;
 
     @ManyToMany(mappedBy = "users")
@@ -28,10 +29,11 @@ public class User {
 
     protected User() {}
 
-    public User(String login, String firstname, String lastname) {
+    public User(String login, String firstname, String lastname,String role) {
         this.login = login;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.role = role;
         this.created_at = LocalDateTime.now();
     }
 
@@ -86,6 +88,15 @@ public class User {
     public void setLangue(String langue) {
         this.langue = langue;
     }
+    public String getRole() {
+        return langue;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+
 
     public List<Role> getRoles() {
         return roles;
@@ -137,6 +148,6 @@ public class User {
 
     @Override
     public String toString() {
-        return login + "(" + firstname + " " + lastname + ")";
-    }
+
+        return login + "(" + firstname + " " + lastname + " - " + role + ")";    }
 }

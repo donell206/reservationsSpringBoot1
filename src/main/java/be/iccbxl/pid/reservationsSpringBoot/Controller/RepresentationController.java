@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import be.iccbxl.pid.reservationsSpringBoot.model.Representation;
-import be.iccbxl.pid.reservationsSpringBoot.model.RepresentationService;
+import be.iccbxl.pid.reservationsSpringBoot.service.RepresentationService;
 
 @Controller
 public class RepresentationController {
